@@ -14,7 +14,7 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
-  TouchableWithoutFeedback,
+  Pressable,
   View,
 } from "react-native"
 import Header from "./Layout/Header"
@@ -48,7 +48,7 @@ export default () => {
       style={{ flex: 1 }}
       behavior={Platform.OS == "ios" ? "padding" : "height"}
     >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <Pressable onPress={Keyboard.dismiss}>
         <NavigationContainer linking={linking}>
           <Stack.Navigator
             screenOptions={{
@@ -65,7 +65,7 @@ export default () => {
             <Stack.Screen name="Login" component={Login} initialParams={{}} />
           </Stack.Navigator>
         </NavigationContainer>
-      </TouchableWithoutFeedback>
+      </Pressable>
       <View data-testid={"flash-message"}>
         <FlashMessage position="top" floating />
       </View>

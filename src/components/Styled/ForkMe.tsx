@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components/native"
+import { Text } from "react-native"
 import {
   forkMeStyles,
   forkMeStylesFork,
@@ -23,11 +24,12 @@ const fork = () => Linking.openURL("https://github.com/ory")
 
 export default () => (
   <Container>
-    <StyledImage
+    {/* <StyledImage
       resizeMode="contain"
       source={require("../../assets/ory.png")}
-    />
-    <StyledText>
+    /> */}
+    {/* <Text>Toto</Text> */}
+    {/* <StyledText>
       Fork me on{" "}
       <Link onPress={fork}>
         <Fork
@@ -36,6 +38,6 @@ export default () => (
         />
         GitHub!
       </Link>
-    </StyledText>
+    </StyledText> */}
   </Container>
 )
