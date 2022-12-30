@@ -3,6 +3,7 @@ import "react-native-gesture-handler"
 import React, { useContext } from "react"
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
+import Recovery from './Routes/Recovery'
 
 import Login from "./Routes/Login"
 import Registration from "./Routes/Registration"
@@ -14,7 +15,7 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
-  Pressable,
+  TouchableOpacity,
   View,
 } from "react-native"
 import Header from "./Layout/Header"
@@ -28,7 +29,10 @@ export type RootStackParamList = {
     aal?: "aal2"
   }
   Registration: undefined
-  Settings: undefined
+  Settings: {
+    flowId?: string,
+  }
+  Recovery: undefined
 }
 
 const options = {
@@ -48,7 +52,7 @@ export default () => {
       style={{ flex: 1 }}
       behavior={Platform.OS == "ios" ? "padding" : "height"}
     >
-      <Pressable onPress={Keyboard.dismiss}>
+      <TouchableOpacity style={{height:"100%", width: "100%"}} onPress={Keyboard.dismiss}>
         <NavigationContainer linking={linking}>
           <Stack.Navigator
             screenOptions={{
@@ -63,9 +67,10 @@ export default () => {
             />
             <Stack.Screen name="Registration" component={Registration} />
             <Stack.Screen name="Login" component={Login} initialParams={{}} />
+            <Stack.Screen name="Recovery" component={Recovery} />
           </Stack.Navigator>
         </NavigationContainer>
-      </Pressable>
+      </TouchableOpacity>
       <View data-testid={"flash-message"}>
         <FlashMessage position="top" floating />
       </View>

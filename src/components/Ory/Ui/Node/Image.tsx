@@ -1,8 +1,8 @@
 import React from "react"
-import { UiNode, UiNodeImageAttributes } from "@ory/kratos-client"
+import { UiNode, UiNodeImageAttributes } from '@ory/client'
 import styled from "styled-components/native"
 import { getNodeId } from "../../../../helpers/form"
-import { View } from "react-native"
+import { View } from 'react-native'
 
 interface Props {
   node: UiNode

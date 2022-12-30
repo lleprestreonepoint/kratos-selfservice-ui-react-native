@@ -1,4 +1,4 @@
-import { UiNode } from "@ory/kratos-client"
+import { UiNode } from '@ory/client'
 import React from "react"
 import {
   isUiNodeImageAttributes,
@@ -6,7 +6,7 @@ import {
   isUiNodeTextAttributes,
 } from "../../../../helpers/form"
 import { NodeImage } from "./Image"
-import { NodeText } from "./Text"
+import { NodeText } from './Text'
 import { InputProps, NodeInput } from "./Input"
 import { InputSubmitProps, NodeInputSubmit } from "./InputSubmit"
 

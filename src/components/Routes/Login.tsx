@@ -1,26 +1,26 @@
 // This file renders the login screen.
-import React, { useContext, useState } from "react"
-import { StackScreenProps } from "@react-navigation/stack"
-import { useFocusEffect } from "@react-navigation/native"
 import {
   SelfServiceLoginFlow,
-  SubmitSelfServiceLoginFlowBody,
-} from "@ory/kratos-client"
+  SubmitSelfServiceLoginFlowBody
+} from '@ory/client'
+import { useFocusEffect } from '@react-navigation/native'
+import { StackScreenProps } from '@react-navigation/stack'
+import React, { useContext, useState } from 'react'
 
-import { SelfServiceFlow } from "../Ory/Ui"
-import { newKratosSdk } from "../../helpers/sdk"
-import StyledCard from "../Styled/StyledCard"
-import AuthLayout from "../Layout/AuthLayout"
-import NavigationCard from "../Styled/NavigationCard"
-import AuthSubTitle from "../Styled/AuthSubTitle"
-import { RootStackParamList } from "../Navigation"
-import { AuthContext } from "../AuthProvider"
-import { handleFormSubmitError } from "../../helpers/form"
-import ProjectPicker from "../Layout/ProjectPicker"
-import { ProjectContext } from "../ProjectProvider"
-import { SessionContext } from "../../helpers/auth"
+import { SessionContext } from '../../helpers/auth'
+import { handleFormSubmitError } from '../../helpers/form'
+import { newKratosSdk } from '../../helpers/sdk'
+import { AuthContext } from '../AuthProvider'
+import AuthLayout from '../Layout/AuthLayout'
+import ProjectPicker from '../Layout/ProjectPicker'
+import { RootStackParamList } from '../Navigation'
+import { SelfServiceFlow } from '../Ory/Ui'
+import { ProjectContext } from '../ProjectProvider'
+import AuthSubTitle from '../Styled/AuthSubTitle'
+import NavigationCard from '../Styled/NavigationCard'
+import StyledCard from '../Styled/StyledCard'
 
-type Props = StackScreenProps<RootStackParamList, "Login">
+type Props = StackScreenProps<RootStackParamList, 'Login'>
 
 const Login = ({ navigation, route }: Props) => {
   const { project } = useContext(ProjectContext)
@@ -32,7 +32,7 @@ const Login = ({ navigation, route }: Props) => {
       .initializeSelfServiceLoginFlowWithoutBrowser(
         route.params.refresh,
         route.params.aal,
-        sessionToken,
+        sessionToken
       )
       .then((response) => {
         const { data: flow } = response
@@ -49,20 +49,20 @@ const Login = ({ navigation, route }: Props) => {
       return () => {
         setFlow(undefined)
       }
-    }, [project]),
+    }, [project])
   )
 
   // This will update the login flow with the user provided input:
   const onSubmit = (payload: SubmitSelfServiceLoginFlowBody) =>
     flow
       ? newKratosSdk(project)
-          .submitSelfServiceLoginFlow(flow.id, sessionToken, payload)
+          .submitSelfServiceLoginFlow(flow.id, payload, sessionToken)
           .then(({ data }) => Promise.resolve(data as SessionContext))
           // Looks like everything worked and we have a session!
           .then((session) => {
             setSession(session)
             setTimeout(() => {
-              navigation.navigate("Home")
+              navigation.navigate('Home')
             }, 100)
           })
           .catch(handleFormSubmitError(setFlow, initializeFlow))
@@ -79,7 +79,13 @@ const Login = ({ navigation, route }: Props) => {
         testID="nav-signup"
         description="Need an account?"
         cta="Sign up!"
-        onPress={() => navigation.navigate("Registration")}
+        onPress={() => navigation.navigate('Registration')}
+      />
+      <NavigationCard
+        testID="nav-recover"
+        description="Forgot your password?"
+        cta="Recover your account!"
+        onPress={() => navigation.navigate('Recovery')}
       />
 
       <ProjectPicker />

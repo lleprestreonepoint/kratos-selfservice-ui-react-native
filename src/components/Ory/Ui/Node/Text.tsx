@@ -1,13 +1,7 @@
 import React from "react"
-import { View } from "react-native"
-import { UiNode, UiNodeTextAttributes } from "@ory/kratos-client"
+import { UiNode, UiNodeTextAttributes } from '@ory/client'
 import styled from "styled-components/native"
-import {
-  textInputTitleStyles,
-  typographyLeadStyles,
-  typographyParagraphStyles,
-} from "@ory/themes"
-import StyledText from "../../../Styled/StyledText"
+import StyledText from '../../../Styled/StyledText'
 import { getNodeId } from "../../../../helpers/form"
 
 interface Props {

@@ -1,9 +1,10 @@
 // This file handles the authentication state.
 
-import { Session as KratosSession } from "@ory/kratos-client"
-import * as SecureStore from "expo-secure-store"
-import AsyncStore from "@react-native-async-storage/async-storage"
-import { Platform } from "react-native"
+import { Session as KratosSession } from '@ory/client'
+import AsyncStore from '@react-native-async-storage/async-storage'
+import * as SecureStore from 'expo-secure-store'
+import { Platform } from 'react-native'
+
 
 // The key under which the session is being stored
 const userSessionName = "user_session"
